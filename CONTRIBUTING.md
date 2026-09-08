@@ -1,92 +1,88 @@
-# Report issues
-If you have any issue with The Fuck, sorry about that, but we will do what we
-can to fix that. Actually, maybe we already have, so first thing to do is to
-update The Fuck and see if the bug is still there.
+> 🌐 本文档由 [nvbn/thefuck](https://github.com/nvbn/thefuck) 翻译,英文原版见原项目。
 
-If it is (sorry again), check if the problem has not already been reported and
-if not, just open an issue on [GitHub](https://github.com/nvbn/thefuck) with
-the following basic information:
-  - the output of `thefuck --version` (something like `The Fuck 3.1 using
-    Python 3.5.0`);
-  - your shell and its version (`bash`, `zsh`, *Windows PowerShell*, etc.);
-  - your system (Debian 7, ArchLinux, Windows, etc.);
-  - how to reproduce the bug;
-  - the output of The Fuck with `THEFUCK_DEBUG=true` exported (typically execute
-    `export THEFUCK_DEBUG=true` in your shell before The Fuck);
-  - if the bug only appears with a specific application, the output of that
-    application and its version;
-  - anything else you think is relevant.
+# 报告问题
 
-It's only with enough information that we can do something to fix the problem.
+如果你使用 The Fuck 时遇到了任何问题,我们很抱歉,但我们会尽力修复。实际上,也许问题已经被修复了,所以第一件事是升级 The Fuck,然后看看 Bug 是否依然存在。
 
-# Make a pull request
-We gladly accept pull request on the [official
-repository](https://github.com/nvbn/thefuck) for new rules, new features, bug
-fixes, etc.
+如果问题依然存在(再次抱歉),请先检查该问题是否已被报告过;如果没有,请在 [GitHub](https://github.com/nvbn/thefuck) 上提交 issue,并附上以下基本信息:
+  - `thefuck --version` 的输出(类似 `The Fuck 3.1 using
+    Python 3.5.0` 这样的内容);
+  - 你使用的 shell 及其版本(`bash`、`zsh`、*Windows PowerShell* 等);
+  - 你使用的系统(Debian 7、ArchLinux、Windows 等);
+  - 如何复现这个 Bug;
+  - 在导出 `THEFUCK_DEBUG=true` 后 The Fuck 的输出(通常是在运行 The Fuck 之前,在 shell 中执行 `export THEFUCK_DEBUG=true`);
+  - 如果该 Bug 只在某个特定应用程序下出现,请提供该应用程序的输出及其版本;
+  - 其他你认为相关的信息。
 
-# Developing
+只有掌握了足够的信息,我们才能动手修复问题。
 
-In order to develop locally, there are two options:
+# 提交 Pull Request
 
-- Develop using a local installation of Python 3 and setting up a virtual environment
-- Develop using an automated VSCode Dev Container.
+我们非常欢迎向[官方仓库](https://github.com/nvbn/thefuck)提交 pull request,包括新规则、新功能、Bug 修复等。
 
-## Develop using local Python installation
+# 开发
 
-[Create and activate a Python 3 virtual environment.](https://docs.python.org/3/tutorial/venv.html)
+本地开发有两种方式:
 
-Install `The Fuck` for development:
+- 使用本地安装的 Python 3 并搭建虚拟环境进行开发
+- 使用自动化的 VSCode Dev Container 进行开发
+
+## 使用本地 Python 环境开发
+
+[创建并激活一个 Python 3 虚拟环境。](https://docs.python.org/3/tutorial/venv.html)
+
+以开发模式安装 `The Fuck`:
 
 ```bash
 pip install -r requirements.txt
 python setup.py develop
 ```
 
-Run code style checks:
+运行代码风格检查:
 
 ```bash
 flake8
 ```
 
-Run unit tests:
+运行单元测试:
 
 ```bash
 pytest
 ```
 
-Run unit and functional tests (requires docker):
+运行单元测试和功能测试(需要 docker):
 
 ```bash
 pytest --enable-functional
 ```
 
-For sending package to pypi:
+发布包到 PyPI:
 
 ```bash
 sudo apt-get install pandoc
 ./release.py
 ```
 
-## Develop using Dev Container
+## 使用 Dev Container 开发
 
-To make local development easier a [VSCode Devcontainer](https://code.visualstudio.com/docs/remote/remote-overview) is included with this repository. This will allows you to spin up a Docker container with all the necessary prerequisites for this project pre-installed ready to go, no local Python install/setup required.
+为了让本地开发更轻松,本仓库内置了 [VSCode Devcontainer](https://code.visualstudio.com/docs/remote/remote-overview)。它可以帮你启动一个预装了本项目全部必要依赖的 Docker 容器,开箱即用,无需在本地安装和配置 Python。
 
-### Prerequisites
+### 前置条件
 
-To use the container you require:
+使用该容器需要:
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [VSCode](https://code.visualstudio.com/)
-- [VSCode Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
-- [Windows Users Only]: [Installation of WSL2 and configuration of Docker to use it](https://docs.docker.com/docker-for-windows/wsl/)
+- [VSCode 远程开发扩展](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
+- [仅限 Windows 用户]:[安装 WSL2 并配置 Docker 使用它](https://docs.docker.com/docker-for-windows/wsl/)
 
-Full notes about [installation are here](https://code.visualstudio.com/docs/remote/containers#_installation)
+完整的[安装说明见这里](https://code.visualstudio.com/docs/remote/containers#_installation)。
 
-### Running the container
+### 运行容器
 
-Assuming you have the prerequisites:
+假设你已具备上述前置条件:
 
-1. Open VSCode
-1. Open command palette (CMD+SHIFT+P (mac) or CTRL+SHIFT+P (windows))
-1. Select `Remote-Containers: Reopen in Container`.
-1. Container will be built, install all pip requirements and your VSCode will mount into it automagically.
-1. Your VSCode and container now essentially become a throw away environment.
+1. 打开 VSCode
+1. 打开命令面板(Mac 上按 CMD+SHIFT+P,Windows 上按 CTRL+SHIFT+P)
+1. 选择 `Remote-Containers: Reopen in Container`。
+1. 容器会被构建,自动安装所有 pip 依赖,随后你的 VSCode 会自动挂载进去。
+1. 之后你的 VSCode 和容器就相当于一个用完即弃的一次性环境。
